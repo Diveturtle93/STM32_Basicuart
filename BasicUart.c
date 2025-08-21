@@ -46,6 +46,7 @@ void uartTransmitNumber (const uint32_t number, const uint32_t base)
 void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 {
 #ifdef SHELL
+	// Array definieren
 	char str[11];
 
 	// Zahl umrechnen
@@ -62,6 +63,7 @@ void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 void uartTransmitVNumber (const int32_t number, const uint32_t base)
 {
 #ifdef SHELL
+	// Array definieren
 	char str[11];
 
 	// Zahl umrechnen
