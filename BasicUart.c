@@ -53,7 +53,7 @@ void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 	utoa(number, str, base);												// Zahl umrechnen anhand der Basis "base"
 
 	// Sende Nummer als String
-	HAL_UART_Transmit(&huart2, (uint8_t *)str, strlen(str), 1000);			// Sende Zahlen
+	uartTransmit(str, strlen(str));											// Sende Zahlen
 #endif
 }
 //----------------------------------------------------------------------
@@ -70,7 +70,7 @@ void uartTransmitVNumber (const int32_t number, const uint32_t base)
 	itoa(number, str, base);												// Zahl umrechnen anhand der Basis "base"
 
 	// Sende Nummer als String
-	HAL_UART_Transmit(&huart2, (uint8_t *)str, strlen(str), 1000);			// Sende Zahlen
+	uartTransmit(str, strlen(str));											// Sende Zahlen
 #endif
 }
 //----------------------------------------------------------------------
@@ -81,7 +81,7 @@ void uartTransmitString (const char *str)
 {
 #ifdef SHELL
 	// Sende String
-	HAL_UART_Transmit(&huart2, (uint8_t *)str, sizeof(str), 1000);
+	uartTransmit(str, strlen(str));
 #endif
 }
 //----------------------------------------------------------------------
@@ -96,7 +96,7 @@ void uartTransmitChar(const char chr)
 	str[0] = chr;
 
 	// Sende String
-	HAL_UART_Transmit(&huart2, (uint8_t *)str, 1, 1000);
+	uartTransmit(str, 1);
 #endif
 }
 //----------------------------------------------------------------------
