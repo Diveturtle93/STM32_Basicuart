@@ -29,7 +29,7 @@
 //----------------------------------------------------------------------
 void uartTransmit (const char *str, const size_t size)
 {
-#ifdef SHELL
+#ifdef DEBUG_BASICUART
 	// Sende String mit Laenge "Size", "Size" muss bekannt sein
 	HAL_UART_Transmit(&huart2, (uint8_t *)str, size, 1000);
 #endif
@@ -45,7 +45,7 @@ void uartTransmitNumber (const uint32_t number, const uint32_t base)
 //----------------------------------------------------------------------
 void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 {
-#ifdef SHELL
+#ifdef DEBUG_BASICUART
 	// Array definieren
 	char str[11];
 
@@ -62,7 +62,7 @@ void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 //----------------------------------------------------------------------
 void uartTransmitVNumber (const int32_t number, const uint32_t base)
 {
-#ifdef SHELL
+#ifdef DEBUG_BASICUART
 	// Array definieren
 	char str[11];
 
@@ -79,7 +79,7 @@ void uartTransmitVNumber (const int32_t number, const uint32_t base)
 //----------------------------------------------------------------------
 void uartTransmitString (const char *str)
 {
-#ifdef SHELL
+#ifdef DEBUG_BASICUART
 	// Sende String
 	uartTransmit(str, strlen(str));
 #endif
@@ -90,7 +90,7 @@ void uartTransmitString (const char *str)
 //----------------------------------------------------------------------
 void uartTransmitChar(const char chr)
 {
-#ifdef SHELL
+#ifdef DEBUG_BASICUART
 	// Variable definieren
 	char str[1];
 	str[0] = chr;
@@ -105,7 +105,7 @@ void uartTransmitChar(const char chr)
 //----------------------------------------------------------------------
 uart_status uartReceive(uint8_t *data, uint16_t length)
 {
-#ifdef SHELL
+#ifdef DEBUG_BASICUART
 	// Status generieren, default ERROR ausgeben
 	uart_status status = UART_ERROR;
 
