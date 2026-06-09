@@ -88,7 +88,7 @@ void uartTransmitString (const char *str)
 
 // Uart2 Transmit Character Funktion
 //----------------------------------------------------------------------
-void uartTransmitChar(const char chr)
+void uartTransmitChar (const char chr)
 {
 #ifdef DEBUG_BASICUART
 	// Variable definieren
@@ -103,7 +103,7 @@ void uartTransmitChar(const char chr)
 
 // Uart2 Receive Funktion
 //----------------------------------------------------------------------
-uart_status uartReceive(uint8_t *data, uint16_t length)
+uart_status uartReceive (uint8_t *data, uint16_t length)
 {
 #ifdef DEBUG_BASICUART
 	// Status generieren, default ERROR ausgeben
