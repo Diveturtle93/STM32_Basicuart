@@ -6,6 +6,7 @@
 // Version	:	1.0
 // Autor	:	Diveturtle93
 // Projekt	:	Basic Uart
+// Quelle	:
 //----------------------------------------------------------------------
 
 // Saveguard symbol
@@ -61,6 +62,7 @@ typedef enum
 
 // Funktionen definieren
 //----------------------------------------------------------------------
+void initBasicUart (UART_HandleTypeDef *huart);								// Initialisiere Basic Uart mit UART Handle
 void uartTransmit (const char *str, const size_t size);						// Sende Zeichenkette der Laenge "size"
 void uartTransmitNumber (const uint32_t number, const uint32_t base);		// Sende Nummer ohne Vorzeichen mit Basis "base"
 void uartTransmitUNumber (const uint32_t number, const uint32_t base);		// Sende Nummer ohne Vorzeichen mit Basis "base"

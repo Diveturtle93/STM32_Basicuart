@@ -6,6 +6,7 @@
 // Version	:	1.0
 // Autor	:	Diveturtle93
 // Projekt	:	Basic Uart
+// Quelle	:
 //----------------------------------------------------------------------
 
 // Einfuegen der standard Include-Dateien
@@ -25,13 +26,31 @@
 #include "basicuart.h"
 //----------------------------------------------------------------------
 
+// Definiere UART Handle
+//----------------------------------------------------------------------
+#ifdef DEBUG_BASICUART
+UART_HandleTypeDef *basicUartHandle;
+#endif
+//----------------------------------------------------------------------
+
+// Initialisiere Basic Uart mit UART Handle
+//----------------------------------------------------------------------
+void initBasicUart (UART_HandleTypeDef *huart)
+{
+#ifdef DEBUG_BASICUART
+	// UART Handle speichern
+	basicUartHandle = huart;
+#endif
+}
+//----------------------------------------------------------------------
+
 // Uart2 Transmit Funktion
 //----------------------------------------------------------------------
 void uartTransmit (const char *str, const size_t size)
 {
 #ifdef DEBUG_BASICUART
 	// Sende String mit Laenge "Size", "Size" muss bekannt sein
-	HAL_UART_Transmit(&huart2, (uint8_t *)str, size, 1000);
+	HAL_UART_Transmit(basicUartHandle, (uint8_t *)str, size, 1000);
 #endif
 }
 //----------------------------------------------------------------------
@@ -110,7 +129,7 @@ uart_status uartReceive (uint8_t *data, uint16_t length)
 	uart_status status = UART_ERROR;
 
 	// Daten empfangen und einlesen
-	if (HAL_OK == HAL_UART_Receive(&huart2, data, length, 1000))
+	if (HAL_OK == HAL_UART_Receive(basicUartHandle, data, length, 1000))
 	{
 		// Wenn einlesen funktioniert hat
 		status = UART_OK;
