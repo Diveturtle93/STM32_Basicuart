@@ -28,7 +28,7 @@
 
 // Einfuegen der STM Include-Dateien
 //----------------------------------------------------------------------
-
+#include "usart.h"
 //----------------------------------------------------------------------
 
 // Einfuegen der eigenen Include Dateien
