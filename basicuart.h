@@ -44,7 +44,7 @@
 
 // Version definieren
 //----------------------------------------------------------------------
-#define BASICUART_MAJOR							0
+#define BASICUART_MAJOR							1
 #define BASICUART_MINOR							0
 #define BASICUART_PATCH							0
 #define BASICUART_DEV							0
@@ -54,8 +54,8 @@
 //----------------------------------------------------------------------
 typedef enum
 {
-	UART_OK		= 0x00,
-	UART_ERROR	= 0xFF,
+	UART_OK		= 0x00,														// 0 Operation erfolgreich
+	UART_ERROR	= 0xFF,														// 255 Operation fehlerhaft
 } uart_status;
 //----------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ void uartTransmitNumber (const uint32_t number, const uint32_t base);		// Sende 
 void uartTransmitUNumber (const uint32_t number, const uint32_t base);		// Sende Nummer ohne Vorzeichen mit Basis "base"
 void uartTransmitVNumber (const int32_t number, const uint32_t base);		// Sende Nummer mit Vorzeichen mit Basis "base"
 void uartTransmitString (const char *str);									// Sende String, Laenge wird ermittelt
-void uartTransmitChar (const char str);										// Sende einzelnes Zeichen
+void uartTransmitChar (const char chr);										// Sende einzelnes Zeichen
 uart_status uartReceive (uint8_t *data, uint16_t length);					// Empfange Daten
 //----------------------------------------------------------------------
 

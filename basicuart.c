@@ -10,8 +10,8 @@
 
 // Einfuegen der standard Include-Dateien
 //----------------------------------------------------------------------
-#include "string.h"
-#include "stdlib.h"
+#include <string.h>
+#include <stdlib.h>
 //----------------------------------------------------------------------
 
 // Einfuegen der STM Include-Dateien
@@ -43,7 +43,7 @@ void initBasicUart (UART_HandleTypeDef *huart)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Funktion
+// Uart Transmit Funktion
 //----------------------------------------------------------------------
 void uartTransmit (const char *str, const size_t size)
 {
@@ -54,7 +54,7 @@ void uartTransmit (const char *str, const size_t size)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Nummer Funktion, Ausgabe ohne Vorzeichen
+// Uart Transmit Nummer Funktion, Ausgabe ohne Vorzeichen
 //----------------------------------------------------------------------
 void uartTransmitNumber (const uint32_t number, const uint32_t base)
 {
@@ -62,13 +62,13 @@ void uartTransmitNumber (const uint32_t number, const uint32_t base)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Nummer Funktion, Ausgabe ohne Vorzeichen
+// Uart Transmit Nummer Funktion, Ausgabe ohne Vorzeichen
 //----------------------------------------------------------------------
 void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 {
 #ifdef DEBUG_BASICUART
 	// Array definieren
-	char str[11];
+	char str[33];															// 32 Zeichen fuer Basis 2 plus Nullterminator
 
 	// Zahl umrechnen
 	utoa(number, str, base);												// Zahl umrechnen anhand der Basis "base"
@@ -79,13 +79,13 @@ void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Nummer Funktion, Ausgabe mit Vorzeichen
+// Uart Transmit Nummer Funktion, Ausgabe mit Vorzeichen
 //----------------------------------------------------------------------
 void uartTransmitVNumber (const int32_t number, const uint32_t base)
 {
 #ifdef DEBUG_BASICUART
 	// Array definieren
-	char str[11];
+	char str[33];															// 32 Zeichen fuer Basis 2 plus Nullterminator
 
 	// Zahl umrechnen
 	itoa(number, str, base);												// Zahl umrechnen anhand der Basis "base"
@@ -96,7 +96,7 @@ void uartTransmitVNumber (const int32_t number, const uint32_t base)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit String Funktion
+// Uart Transmit String Funktion
 //----------------------------------------------------------------------
 void uartTransmitString (const char *str)
 {
@@ -107,7 +107,7 @@ void uartTransmitString (const char *str)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Character Funktion
+// Uart Transmit Character Funktion
 //----------------------------------------------------------------------
 void uartTransmitChar (const char chr)
 {
@@ -122,7 +122,7 @@ void uartTransmitChar (const char chr)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Receive Funktion
+// Uart Receive Funktion
 //----------------------------------------------------------------------
 uart_status uartReceive (uint8_t *data, uint16_t length)
 {
