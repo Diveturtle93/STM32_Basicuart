@@ -3,13 +3,12 @@
 //----------------------------------------------------------------------
 // Sprache	:	C
 // Datum	:	16.01.2021
-// Version	:	1.0
 // Autor	:	Diveturtle93
 // Projekt	:	Basic Uart
 // Quelle	:
 //----------------------------------------------------------------------
 
-// Saveguard symbol
+// Sicherheitssymbol
 //----------------------------------------------------------------------
 #pragma once
 //----------------------------------------------------------------------
@@ -31,12 +30,12 @@
 #include "usart.h"
 //----------------------------------------------------------------------
 
-// Einfuegen der eigenen Include Dateien
+// Einfuegen der eigenen Include-Dateien
 //----------------------------------------------------------------------
 
 //----------------------------------------------------------------------
 
-// Definiere Debug Symbols
+// Definiere Debug-Symbole
 //----------------------------------------------------------------------
 #ifdef DEBUG
 	#define DEBUG_BASICUART
@@ -45,10 +44,10 @@
 
 // Version definieren
 //----------------------------------------------------------------------
-#define BASICUART_MAJOR					0
-#define BASICUART_MINOR					0
-#define BASICUART_PATCH					0
-#define BASICUART_DEV					0
+#define BASICUART_MAJOR							0
+#define BASICUART_MINOR							0
+#define BASICUART_PATCH							0
+#define BASICUART_DEV							0
 //----------------------------------------------------------------------
 
 // Typedefines definieren

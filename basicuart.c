@@ -3,7 +3,6 @@
 //----------------------------------------------------------------------
 // Sprache	:	C
 // Datum	:	16.01.2021
-// Version	:	1.0
 // Autor	:	Diveturtle93
 // Projekt	:	Basic Uart
 // Quelle	:
@@ -21,15 +20,15 @@
 #include "usart.h"
 //----------------------------------------------------------------------
 
-// Einfuegen der eigenen Include Dateien
+// Einfuegen der eigenen Include-Dateien
 //----------------------------------------------------------------------
 #include "basicuart.h"
 //----------------------------------------------------------------------
 
-// Definiere UART Handle
+// Variablen definieren
 //----------------------------------------------------------------------
 #ifdef DEBUG_BASICUART
-UART_HandleTypeDef *basicUartHandle;
+UART_HandleTypeDef *basicUartHandle;										// Definiere UART Handle
 #endif
 //----------------------------------------------------------------------
 
@@ -61,6 +60,9 @@ void uartTransmitNumber (const uint32_t number, const uint32_t base)
 {
 	uartTransmitUNumber(number, base);
 }
+//----------------------------------------------------------------------
+
+// Uart2 Transmit Nummer Funktion, Ausgabe ohne Vorzeichen
 //----------------------------------------------------------------------
 void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 {
