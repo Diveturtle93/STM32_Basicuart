@@ -3,12 +3,12 @@
 //----------------------------------------------------------------------
 // Sprache	:	C
 // Datum	:	16.01.2021
-// Version	:	1.0
 // Autor	:	Diveturtle93
 // Projekt	:	Basic Uart
+// Quelle	:
 //----------------------------------------------------------------------
 
-// Saveguard symbol
+// Sicherheitssymbol
 //----------------------------------------------------------------------
 #pragma once
 //----------------------------------------------------------------------
@@ -25,7 +25,17 @@
 #include <stdio.h>
 //----------------------------------------------------------------------
 
-// Definiere Debug Symbols
+// Einfuegen der STM Include-Dateien
+//----------------------------------------------------------------------
+#include "usart.h"
+//----------------------------------------------------------------------
+
+// Einfuegen der eigenen Include-Dateien
+//----------------------------------------------------------------------
+
+//----------------------------------------------------------------------
+
+// Definiere Debug-Symbole
 //----------------------------------------------------------------------
 #ifdef DEBUG
 	#define DEBUG_BASICUART
@@ -34,29 +44,30 @@
 
 // Version definieren
 //----------------------------------------------------------------------
-#define BASICUART_MAJOR					0
-#define BASICUART_MINOR					0
-#define BASICUART_PATCH					0
-#define BASICUART_DEV					0
+#define BASICUART_MAJOR							1
+#define BASICUART_MINOR							0
+#define BASICUART_PATCH							0
+#define BASICUART_DEV							0
 //----------------------------------------------------------------------
 
 // Typedefines definieren
 //----------------------------------------------------------------------
 typedef enum
 {
-	UART_OK		= 0x00,
-	UART_ERROR	= 0xFF,
+	UART_OK		= 0x00,														// 0 Operation erfolgreich
+	UART_ERROR	= 0xFF,														// 255 Operation fehlerhaft
 } uart_status;
 //----------------------------------------------------------------------
 
 // Funktionen definieren
 //----------------------------------------------------------------------
+void initBasicUart (UART_HandleTypeDef *huart);								// Initialisiere Basic Uart mit UART Handle
 void uartTransmit (const char *str, const size_t size);						// Sende Zeichenkette der Laenge "size"
 void uartTransmitNumber (const uint32_t number, const uint32_t base);		// Sende Nummer ohne Vorzeichen mit Basis "base"
 void uartTransmitUNumber (const uint32_t number, const uint32_t base);		// Sende Nummer ohne Vorzeichen mit Basis "base"
 void uartTransmitVNumber (const int32_t number, const uint32_t base);		// Sende Nummer mit Vorzeichen mit Basis "base"
 void uartTransmitString (const char *str);									// Sende String, Laenge wird ermittelt
-void uartTransmitChar (const char str);										// Sende einzelnes Zeichen
+void uartTransmitChar (const char chr);										// Sende einzelnes Zeichen
 uart_status uartReceive (uint8_t *data, uint16_t length);					// Empfange Daten
 //----------------------------------------------------------------------
 

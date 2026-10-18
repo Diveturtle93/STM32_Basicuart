@@ -3,15 +3,15 @@
 //----------------------------------------------------------------------
 // Sprache	:	C
 // Datum	:	16.01.2021
-// Version	:	1.0
 // Autor	:	Diveturtle93
 // Projekt	:	Basic Uart
+// Quelle	:
 //----------------------------------------------------------------------
 
 // Einfuegen der standard Include-Dateien
 //----------------------------------------------------------------------
-#include "string.h"
-#include "stdlib.h"
+#include <string.h>
+#include <stdlib.h>
 //----------------------------------------------------------------------
 
 // Einfuegen der STM Include-Dateien
@@ -20,34 +20,55 @@
 #include "usart.h"
 //----------------------------------------------------------------------
 
-// Einfuegen der eigenen Include Dateien
+// Einfuegen der eigenen Include-Dateien
 //----------------------------------------------------------------------
 #include "basicuart.h"
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Funktion
+// Variablen definieren
+//----------------------------------------------------------------------
+#ifdef DEBUG_BASICUART
+UART_HandleTypeDef *basicUartHandle;										// Definiere UART Handle
+#endif
+//----------------------------------------------------------------------
+
+// Initialisiere Basic Uart mit UART Handle
+//----------------------------------------------------------------------
+void initBasicUart (UART_HandleTypeDef *huart)
+{
+#ifdef DEBUG_BASICUART
+	// UART Handle speichern
+	basicUartHandle = huart;
+#endif
+}
+//----------------------------------------------------------------------
+
+// Uart Transmit Funktion
 //----------------------------------------------------------------------
 void uartTransmit (const char *str, const size_t size)
 {
 #ifdef DEBUG_BASICUART
 	// Sende String mit Laenge "Size", "Size" muss bekannt sein
-	HAL_UART_Transmit(&huart2, (uint8_t *)str, size, 1000);
+	HAL_UART_Transmit(basicUartHandle, (uint8_t *)str, size, 1000);
 #endif
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Nummer Funktion, Ausgabe ohne Vorzeichen
+// Uart Transmit Nummer Funktion, Ausgabe ohne Vorzeichen
 //----------------------------------------------------------------------
 void uartTransmitNumber (const uint32_t number, const uint32_t base)
 {
 	uartTransmitUNumber(number, base);
 }
 //----------------------------------------------------------------------
+
+// Uart Transmit Nummer Funktion, Ausgabe ohne Vorzeichen
+//----------------------------------------------------------------------
 void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 {
 #ifdef DEBUG_BASICUART
 	// Array definieren
-	char str[11];
+	char str[33];															// 32 Zeichen fuer Basis 2 plus Nullterminator
 
 	// Zahl umrechnen
 	utoa(number, str, base);												// Zahl umrechnen anhand der Basis "base"
@@ -58,13 +79,13 @@ void uartTransmitUNumber (const uint32_t number, const uint32_t base)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Nummer Funktion, Ausgabe mit Vorzeichen
+// Uart Transmit Nummer Funktion, Ausgabe mit Vorzeichen
 //----------------------------------------------------------------------
 void uartTransmitVNumber (const int32_t number, const uint32_t base)
 {
 #ifdef DEBUG_BASICUART
 	// Array definieren
-	char str[11];
+	char str[33];															// 32 Zeichen fuer Basis 2 plus Nullterminator
 
 	// Zahl umrechnen
 	itoa(number, str, base);												// Zahl umrechnen anhand der Basis "base"
@@ -75,7 +96,7 @@ void uartTransmitVNumber (const int32_t number, const uint32_t base)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit String Funktion
+// Uart Transmit String Funktion
 //----------------------------------------------------------------------
 void uartTransmitString (const char *str)
 {
@@ -86,9 +107,9 @@ void uartTransmitString (const char *str)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Transmit Character Funktion
+// Uart Transmit Character Funktion
 //----------------------------------------------------------------------
-void uartTransmitChar(const char chr)
+void uartTransmitChar (const char chr)
 {
 #ifdef DEBUG_BASICUART
 	// Variable definieren
@@ -101,16 +122,16 @@ void uartTransmitChar(const char chr)
 }
 //----------------------------------------------------------------------
 
-// Uart2 Receive Funktion
+// Uart Receive Funktion
 //----------------------------------------------------------------------
-uart_status uartReceive(uint8_t *data, uint16_t length)
+uart_status uartReceive (uint8_t *data, uint16_t length)
 {
 #ifdef DEBUG_BASICUART
 	// Status generieren, default ERROR ausgeben
 	uart_status status = UART_ERROR;
 
 	// Daten empfangen und einlesen
-	if (HAL_OK == HAL_UART_Receive(&huart2, data, length, 1000))
+	if (HAL_OK == HAL_UART_Receive(basicUartHandle, data, length, 1000))
 	{
 		// Wenn einlesen funktioniert hat
 		status = UART_OK;
